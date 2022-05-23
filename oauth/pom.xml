@@ -5,8 +5,7 @@
     <parent>
         <groupId>com.spring</groupId>
         <artifactId>integration</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <version>1.0.0</version>
     </parent>
     <groupId>com.spring</groupId>
     <artifactId>oauth</artifactId>
