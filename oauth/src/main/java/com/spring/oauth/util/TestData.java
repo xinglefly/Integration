@@ -65,6 +65,14 @@ public class TestData {
         return allUser;
     }
 
+    /**
+     * Stream.toList()返回的List是不可变List，不能增删改
+     * Collectors.toList()返回的是个普通的List，可以增删改
+     * Collectors.toUnmodifiableList()返回的List是不可变List，不能增删改
+     * Stream.toList()的性能要各方面都要好于Collectors.toList()和Collectors.toUnmodifiableList()
+     * @param user
+     * @return
+     */
     public UserBean queryUser(UserBean user) {
         List<UserBean> allUser = this.getAllUser();
         List<UserBean> userList = allUser.stream().filter(userBean ->
