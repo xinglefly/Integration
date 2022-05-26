@@ -17,6 +17,7 @@ import org.springframework.security.oauth2.provider.code.InMemoryAuthorizationCo
 import org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 
 /**
  * @Author: xingle
@@ -24,12 +25,9 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
  * @Date: 2022/5/25 7:00 下午
  */
 @Configuration
-public class MyAuthorizationConfig extends AuthorizationServerConfigurerAdapter {
+public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
 
 
-
-//    @Autowired
-//    private AuthorizationCodeServices authorizationCodeServices;
     @Autowired
     private AuthenticationManager authenticationManager;
 
@@ -37,10 +35,13 @@ public class MyAuthorizationConfig extends AuthorizationServerConfigurerAdapter 
     private UserDetailsService userDetailsService;
 
     @Autowired
-    private TokenStore tokenStore; //会通过之前的ClientDetailsServiceConfigurer注入到Spring容器中
+    private TokenStore tokenStore;
 
     @Autowired
     private ClientDetailsService clientDetailsService;
+
+    @Autowired
+    private JwtAccessTokenConverter jwtAccessTokenConverter;
 
 
     /**
@@ -81,7 +82,7 @@ public class MyAuthorizationConfig extends AuthorizationServerConfigurerAdapter 
     }
 
     /**
-     * 3.配置令牌断电的安全策略
+     * 3.配置令牌端点的安全策略
      * @param security
      * @throws Exception
      */
@@ -95,8 +96,13 @@ public class MyAuthorizationConfig extends AuthorizationServerConfigurerAdapter 
     public AuthorizationServerTokenServices tokenService() {
         DefaultTokenServices service = new DefaultTokenServices();
         service.setClientDetailsService(clientDetailsService); //客户端详情服
+
         service.setSupportRefreshToken(true); //允许令牌自动刷新
         service.setTokenStore(tokenStore); //令牌存储策略-内存
+
+        //使用jwt令牌
+        service.setTokenEnhancer(jwtAccessTokenConverter);
+
         service.setAccessTokenValiditySeconds(7200); // 令牌默认有效期2小时
         service.setRefreshTokenValiditySeconds(259200); // 刷新令牌默认有效期3
         return service;
