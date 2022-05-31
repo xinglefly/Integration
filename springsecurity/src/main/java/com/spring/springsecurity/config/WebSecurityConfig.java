@@ -23,6 +23,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         //链式配置拦截策略
         http.csrf().disable() //关闭csrg跨域检查
                 .authorizeRequests()
+                .antMatchers("/swagger-ui/**").permitAll()
                 .antMatchers("/mobile/**").hasAuthority("mobile") //资源配置
                 .antMatchers("/salary/**").hasAuthority("salary")
                 .antMatchers("/common/**").permitAll()
