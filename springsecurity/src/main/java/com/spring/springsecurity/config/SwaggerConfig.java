@@ -2,6 +2,7 @@ package com.spring.springsecurity.config;
 
 import com.github.xiaoymin.knife4j.spring.annotations.EnableKnife4j;
 import io.swagger.v3.oas.annotations.Operation;
+import lombok.SneakyThrows;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -27,6 +28,7 @@ import java.util.List;
 public class SwaggerConfig {
 
     @Bean
+    @SneakyThrows
     public Docket createRestapi() {
         return new Docket(DocumentationType.OAS_30)
                 .apiInfo(apiInfo())

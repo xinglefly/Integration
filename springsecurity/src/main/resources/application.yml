@@ -4,22 +4,17 @@ server:
     context-path: /spring-security
 
 
-#springdoc:
-#  swagger-ui:
-#    path: /swagger-ui.html
-#  packages-to-scan: com.spring.springsecurity
-#  paths-to-match: /web/**
 #springfox:
 #  documentation:
-#    enabled: true
+#    swagger-ui:
+#      enabled: false
 
+knife4j:
+  enable: false
+  setting:
+    enableVersion: true
 
-springfox:
-  documentation:
-    swagger-ui:
-      enabled: true
-
-
+# 解决spring2.6以上版本swagger3
 spring:
   mvc:
     pathmatch:

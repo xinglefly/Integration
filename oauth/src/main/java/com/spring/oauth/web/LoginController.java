@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @Author: xingle
@@ -23,9 +26,18 @@ public class LoginController {
     @Autowired
     private AuthService authService;
 
-    @GetMapping("/login")
+    private List<String> users = new ArrayList<>();
+
+    @PostMapping("/test")
+    public String testValid(@Valid @RequestBody UserBean user){
+        String userName = user.getUserName();
+        return "success";
+    }
+
+
+    @PostMapping("/login")
 //    public UserBean login(UserBean user, HttpServletRequest request) {
-    public UserBean login(@RequestParam String userName, @RequestParam String userPass, HttpServletRequest request) {
+    public UserBean login(@Valid @RequestParam String userName,@Valid @RequestParam String userPass, HttpServletRequest request) {
         UserBean user = new UserBean(userName, userPass);
         UserBean userBean = authService.query(user);
         if (null != userBean) {

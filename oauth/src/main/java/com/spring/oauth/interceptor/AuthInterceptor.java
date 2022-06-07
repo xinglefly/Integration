@@ -21,7 +21,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String requestURI = request.getRequestURI();
         //1、不需要登录就可以访问的路径
-        if (requestURI.contains(".") || requestURI.startsWith("/" + Constants.RESOURCE_COMMON + "/")) {
+        if (requestURI.contains(".") || requestURI.startsWith("/oauth/" + Constants.RESOURCE_COMMON + "/")) {
             return true;
         }
 

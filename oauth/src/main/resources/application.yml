@@ -1,2 +1,15 @@
 server:
   port: 8001
+  servlet:
+    context-path: /oauth
+
+knife4j:
+  enable: false
+  setting:
+    enableVersion: true
+
+# 解决spring2.6以上版本swagger3
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
