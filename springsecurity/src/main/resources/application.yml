@@ -19,3 +19,13 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+
+datasource:
+  password: ENC(/AL9nJENCYCh9Pfzdf2xLPsqOZ6HwNgQ3AnMybFAMeOM5GphZlOK6PxzozwtCm+Q)
+
+jasypt:
+  encryptor:
+    password: didispace
+
+# mvn jasypt:encrypt-value -Djasypt.encryptor.password="didispace" -Djasypt.plugin.value="didispace.com"
+# mvn jasypt:decrypt-value -Djasypt.encryptor.password="didispace" -Djasypt.plugin.value="/AL9nJENCYCh9Pfzdf2xLPsqOZ6HwNgQ3AnMybFAMeOM5GphZlOK6PxzozwtCm+Q"

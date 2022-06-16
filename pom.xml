@@ -6,7 +6,6 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.7.0</version>
-        <!--        <version>2.3.3.RELEASE</version>-->
         <relativePath/>
     </parent>
     <groupId>com.spring</groupId>
@@ -27,6 +26,7 @@
         <module>springsecurity</module>
         <module>distributed-security-uaa</module>
         <module>distributed-security-salary</module>
+<!--        <module>jsr-validate</module>-->
     </modules>
 
     <dependencies>
@@ -58,6 +58,13 @@
         <dependency>
             <groupId>com.github.xiaoymin</groupId>
             <artifactId>knife4j-spring-boot-starter</artifactId>
+            <version>3.0.3</version>
+        </dependency>
+
+        <!--jasypt-->
+        <dependency>
+            <groupId>com.github.ulisesbocchio</groupId>
+            <artifactId>jasypt-spring-boot-starter</artifactId>
             <version>3.0.3</version>
         </dependency>
     </dependencies>

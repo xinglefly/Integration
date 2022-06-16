@@ -1,0 +1,38 @@
+server:
+  port: 8005
+
+
+springfox:
+  documentation:
+    swagger-ui:
+      enabled: true
+
+# 访问地址：http://localhost:8002/doc.html#/home
+knife4j:
+  # 开启增强配置
+  enable: true
+  # 开启生产环境屏蔽
+# production: true
+  setting:
+    enableVersion: true
+  # 开启Swagger的Basic认证功能,默认是false
+  basic:
+    enable: true
+    username: admin
+    password: 123456
+
+# 解决spring2.6以上版本swagger3
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+
+datasource:
+  password: ENC(/AL9nJENCYCh9Pfzdf2xLPsqOZ6HwNgQ3AnMybFAMeOM5GphZlOK6PxzozwtCm+Q)
+
+jasypt:
+  encryptor:
+    password: didispace
+
+
