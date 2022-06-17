@@ -4,6 +4,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 @Data
@@ -13,7 +14,7 @@ public class User {
     private Long id;
 
     @NotBlank(message = "用户名不能为空!")
-    @Size(min = 2, max = 5)
+    @Size(min = 2, max = 5, message = "用户名必须在2-5位之间")
     @ApiModelProperty("用户名")
     private String name;
 
@@ -27,4 +28,11 @@ public class User {
     @Email
     @ApiModelProperty("邮箱")
     private String email;
+
+    /**
+     * 如果@valid 没有校验Role
+     * 添加@Valid
+     */
+    @NotNull(message = "角色不能为空")
+    private Role role;
 }

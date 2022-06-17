@@ -1,0 +1,27 @@
+server:
+  port: 8006
+
+#ops
+spring:
+  boot:
+    admin:
+      client:
+        url: http://localhost:8888
+        instance:
+          service-url: http://localhost:8006 #local application url
+          prefer-ip: true
+          name: actuator-client
+
+#actuator config
+management:
+  endpoints:
+    web:
+      base-path: /actuator #????????
+  #      exposure:
+  #        include: '*' #??????
+  #        include: health,info,env #??????
+  #        exclude: info,beans,env #????????????????????(???)
+  #    enabled-by-default: false #??????
+  endpoint:
+    health:
+      show-details: always

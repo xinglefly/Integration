@@ -1,6 +1,11 @@
 server:
   port: 8005
 
+# 解决spring2.6以上版本swagger3
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
 
 springfox:
   documentation:
@@ -9,8 +14,7 @@ springfox:
 
 # 访问地址：http://localhost:8002/doc.html#/home
 knife4j:
-  # 开启增强配置
-  enable: true
+  enable: true # 开启增强配置
   # 开启生产环境屏蔽
 # production: true
   setting:
@@ -21,18 +25,17 @@ knife4j:
     username: admin
     password: 123456
 
-# 解决spring2.6以上版本swagger3
-spring:
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
-
-
 datasource:
   password: ENC(/AL9nJENCYCh9Pfzdf2xLPsqOZ6HwNgQ3AnMybFAMeOM5GphZlOK6PxzozwtCm+Q)
 
 jasypt:
   encryptor:
     password: didispace
+
+
+
+
+
+
 
 

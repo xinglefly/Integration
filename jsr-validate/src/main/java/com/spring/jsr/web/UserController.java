@@ -1,6 +1,8 @@
 package com.spring.jsr.web;
 
 import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
+import com.spring.jsr.advice.Color;
+import com.spring.jsr.domain.Colors;
 import com.spring.jsr.domain.User;
 import com.spring.jsr.record.Rest;
 import com.spring.jsr.record.RestBody;
@@ -27,14 +29,14 @@ public class UserController {
     @Value("${datasource.password:}")
     private String source;
 
-    @GetMapping("/")
+    @GetMapping("/getAllUsers")
     @Operation(summary = "获取用户列表")
     public Rest<?> getUsers(){
         List<User> r = new ArrayList<>(users.values());
         return RestBody.okData(r);
     }
 
-    @PostMapping("/")
+    @PostMapping("/create")
     @Operation(summary = "创建用户")
     @ApiOperationSupport(author = "振兴")
     public Rest<?> postUser(@Valid @RequestBody User user){
@@ -43,14 +45,17 @@ public class UserController {
         return RestBody.okData(user);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/getUserByID/{id}")
     @Operation(summary = "根据url的id来获取用户详细信息")
     @ApiOperationSupport(author = "振兴")
     public Rest<?> getUserById(@PathVariable Long id){
         if (id == null || "".equals(id)) {
-            return RestBody.failure("id不能为空!","");
+            return RestBody.failure("id不能为空!");
         }
         User user = users.get(id);
+        if (user == null) {
+            return RestBody.failure("用户不存在!");
+        }
         return RestBody.okData(user);
     }
 
@@ -59,7 +64,15 @@ public class UserController {
     @ApiOperationSupport(author = "007")
     @Operation(summary = "获取加密信息")
     public Rest<?> getJasypt(){
-        return RestBody.ok(this.source);
+        return RestBody.okData(this.source);
+    }
+
+
+    @GetMapping("/getColor/{color}")
+    @ApiOperationSupport(author = "振兴")
+    @Operation(summary = "获取颜色")
+    public Rest<?> getOrderStatus(@Valid @Color({Colors.RED, Colors.YELLOW}) @PathVariable String color){
+        return RestBody.okData(color);
     }
 }
 

@@ -26,7 +26,6 @@
         <module>springsecurity</module>
         <module>distributed-security-uaa</module>
         <module>distributed-security-salary</module>
-<!--        <module>jsr-validate</module>-->
     </modules>
 
     <dependencies>
@@ -42,6 +41,13 @@
             <artifactId>spring-security-oauth2-autoconfigure</artifactId>
             <version>2.1.2.RELEASE</version>
         </dependency>
+
+        <!--actuator-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
         <!--lombok-->
         <dependency>
             <groupId>org.projectlombok</groupId>

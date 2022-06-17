@@ -19,6 +19,30 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+  application:
+    # 应用名称
+    name: sjfx-api-search
+  jmx:
+    enabled: true
+  boot:
+    admin:
+      client:
+        # 服务端 url
+        url: http://127.0.0.1:9090
+        instance:
+          # 客户端实例 url
+          service-url: http://127.0.0.1:8080
+          prefer-ip: true
+          # 客户端实例名称
+          name: sjfx-api-search
+
+management:
+  endpoints:
+    web:
+      exposure:
+        # 暴漏的接口 - 所有接口
+        include: "*"
+
 
 datasource:
   password: ENC(/AL9nJENCYCh9Pfzdf2xLPsqOZ6HwNgQ3AnMybFAMeOM5GphZlOK6PxzozwtCm+Q)

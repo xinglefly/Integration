@@ -1,7 +1,6 @@
 package com.spring.jsr.record;
 
 import lombok.Data;
-import org.springframework.http.HttpStatus;
 
 import java.io.Serializable;
 
@@ -13,10 +12,10 @@ import java.io.Serializable;
 @Data
 public class RestBody<T> implements Rest<T>, Serializable {
 
-    private int httpStatus = 200;
-    private T data;
+    private int code = 200;
     private String msg = "";
     private String identifier = "";
+    private T data;
 
 
     public static Rest<?> ok() {
@@ -42,17 +41,23 @@ public class RestBody<T> implements Rest<T>, Serializable {
         return restBody;
     }
 
-    public static <T> Rest<T> build(int httpStatus, T data, String msg) {
+    public static <T> Rest<T> build(int code, T data, String msg) {
         Rest<T> restBody = new RestBody<>();
-        restBody.setHttpStatus(httpStatus);
+        restBody.setCode(code);
         restBody.setData(data);
         restBody.setMsg(msg);
         return restBody;
     }
 
-    public static Rest<?> failure(int httpStatus,String msg) {
+    public static Rest<?> failure(int code,String msg) {
         Rest<?> restBody = new RestBody<>();
-        restBody.setHttpStatus(httpStatus);
+        restBody.setCode(code);
+        restBody.setMsg(msg);
+        return restBody;
+    }
+
+    public static Rest<?> failure(String msg) {
+        Rest<?> restBody = new RestBody<>();
         restBody.setMsg(msg);
         return restBody;
     }

@@ -9,15 +9,10 @@ public interface Rest<T> {
 
     /**
      * 状态码
-     * @param httpStatus the http status
+     * @param code the http status
      */
-    void setHttpStatus(int httpStatus);
+    void setCode(int code);
 
-    /**
-     * 数据载体
-     * @param data
-     */
-    void setData(T data);
 
     /**
      * 体系信息
@@ -30,4 +25,10 @@ public interface Rest<T> {
      * @param identifier
      */
     void setIdentifier(String identifier);
+
+    /**
+     * 数据载体
+     * @param data
+     */
+    void setData(T data);
 }
